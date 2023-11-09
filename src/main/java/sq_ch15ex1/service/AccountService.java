@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
 import sq_ch15ex1.model.Account;
@@ -18,6 +19,7 @@ public class AccountService {
 		return repository.findAllAccount();
 	}
 	
+	@Transactional
 	public void transferMoney(
 			Long senderId,
 			Long receiverId, 

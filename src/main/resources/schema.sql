@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS account;
+CREATE TABLE account(
+  ID INT PRIMARY KEY auto_increment, 
+  NAME VARCHAR(255),
+  AMOUNT NUMERIC(20, 0));

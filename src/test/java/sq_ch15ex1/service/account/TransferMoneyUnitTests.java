@@ -35,10 +35,10 @@ public class TransferMoneyUnitTests {
 			receiver.setAmount(new BigDecimal(50_0000));
 			
 			// 두 계좌를 저장소에서 각 ID로 찾았을 때 계좌가 찾아지게 지정한다
-			given(accountRepository.findById(sender.getId()))
+			given(accountRepository.findAccountById(sender.getId()))
 				.willReturn(Optional.of(sender));
-			given(accountRepository.findById(receiver.getId()))
-			.willReturn(Optional.of(receiver));
+			given(accountRepository.findAccountById(receiver.getId()))
+			  .willReturn(Optional.of(receiver));
 			
 			// 시험 대상 메소드를 준비한 자료 실인자를 사용하여 호출한다.
 			accountService.transferMoney(

@@ -45,7 +45,7 @@ public class TransferMoneyUnitTests {
 					sender.getId(), receiver.getId(), new BigDecimal(10_0000));
 			
 			// 시대메가 두 계좌의 예상 값으로 갱신하는 메소드를 호출하는지 검증한다.
-			verify(accountRepository).updateAccountAmount(new BigDecimal(90_0000), 1);
-			verify(accountRepository).updateAccountAmount(new BigDecimal(60_0000), 2);			
+			verify(accountRepository).updateAccountAmount(new BigDecimal(90_0000), 1L);
+			verify(accountRepository).updateAccountAmount(new BigDecimal(60_0000), 2L);			
 		}
 }

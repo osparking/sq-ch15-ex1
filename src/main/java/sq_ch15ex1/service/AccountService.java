@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.AllArgsConstructor;
+import sq_ch15ex1.exception.AccountNotFoundException;
 import sq_ch15ex1.model.Account;
 import sq_ch15ex1.repository.AccountRepository;
 
@@ -24,8 +25,10 @@ public class AccountService {
 			Long senderId,
 			Long receiverId, 
 			BigDecimal transferAmount) {
-		var senderAccount = repository.findAccountById(senderId);
-		var receiverAccount = repository.findAccountById(receiverId);
+		var senderAccount = repository.findAccountById(senderId)
+				.orElseThrow(() -> new AccountNotFoundException());
+		var receiverAccount = repository.findAccountById(receiverId)
+				.orElseThrow(() -> new AccountNotFoundException());
 		
 		var senderAmount = senderAccount.getAmount().add(transferAmount);
 		var receiverAmount = receiverAccount.getAmount().subtract(transferAmount);

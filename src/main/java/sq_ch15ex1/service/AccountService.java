@@ -30,8 +30,8 @@ public class AccountService {
 		var receiverAccount = repository.findAccountById(receiverId)
 				.orElseThrow(() -> new AccountNotFoundException());
 		
-		var senderAmount = senderAccount.getAmount().add(transferAmount);
-		var receiverAmount = receiverAccount.getAmount().subtract(transferAmount);
+		var senderAmount = senderAccount.getAmount().subtract(transferAmount);
+		var receiverAmount = receiverAccount.getAmount().add(transferAmount);
 		
 		repository.updateAccountAmount(senderAmount, senderId);
 		repository.updateAccountAmount(receiverAmount, receiverId);

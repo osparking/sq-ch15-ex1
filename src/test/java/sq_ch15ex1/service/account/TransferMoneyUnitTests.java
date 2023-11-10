@@ -2,6 +2,7 @@ package sq_ch15ex1.service.account;
 
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -42,5 +43,9 @@ public class TransferMoneyUnitTests {
 			// 시험 대상 메소드를 준비한 자료 실인자를 사용하여 호출한다.
 			accountService.transferMoney(
 					sender.getId(), receiver.getId(), new BigDecimal(10_0000));
+			
+			// 시대메가 두 계좌의 예상 값으로 갱신하는 메소드를 호출하는지 검증한다.
+			verify(accountRepository).updateAccountAmount(new BigDecimal(90_0000), 1);
+			verify(accountRepository).updateAccountAmount(new BigDecimal(60_0000), 2);			
 		}
 }
